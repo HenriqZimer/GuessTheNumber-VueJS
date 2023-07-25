@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import guessTheNumber from './components/main/guessTheNumber.vue'
+import guessTheNumber from './components/guessTheNumber.vue'
 
 export default {
   name: 'App',

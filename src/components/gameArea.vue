@@ -3,7 +3,7 @@
 
         <div>
           <h3 id="textOutput">Your Guess:</h3>
-          <input type="number" v-model="userNumber" @change="compareNumbers"/>
+          
         </div>
 
         <div class="stats">
@@ -18,22 +18,20 @@
           </div>
         </div>
 
-        <button v-if="btnGame" id="newGameButton" @click="newGame()">NEW GAME</button>
-
       </div>
 </template>
 
 <script>
 export default {
 data() {
-    return {
-        computerNumber: 0,
-        userNumber: null,
-        userNumbers: [],
-        attempts: 0,
-        maxGuesses: 10,
-        btnGame: false
-    }
+  return {
+    computerNumber: 0,
+    userNumber: null,
+    userNumbers: [],
+    attempts: 0,
+    maxGuesses: 10,
+    btnGame: false
+  }
 },
 computed: {
     
