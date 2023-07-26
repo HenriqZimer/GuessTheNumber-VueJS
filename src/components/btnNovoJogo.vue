@@ -1,10 +1,14 @@
 <template>
-	<button @click="NewGame">Novo Jogo</button>
+	<button @click="newGameClicado">Novo Jogo</button>
 </template>
 
 <script>
 export default {
-
+	methods:{
+		newGameClicado(){
+      this.$emit('newGameAcionado');
+    }
+	}
 }
 </script>
 
