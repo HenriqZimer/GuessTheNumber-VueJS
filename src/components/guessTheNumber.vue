@@ -1,9 +1,10 @@
 <template>
     <div class="guess">
       <h2>Acerte o Numero entre 1 - 100</h2>
+      <h6>Você tem 10 chances para acertar</h6>
       <h1 v-if="controlador == 1">Voce Ganhou</h1>
       <h1 v-else-if="controlador == 2">Voce Perdeu</h1>
-      
+
       <btnNovoJogo v-if="controlador == 1 || controlador == 2" 
       @newGameAcionado="newGame" />
 
