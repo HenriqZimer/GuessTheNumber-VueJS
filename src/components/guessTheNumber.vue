@@ -1,12 +1,15 @@
 <template>
-    <div class="guess" >
-			<h1>{{ computerNumber }}</h1>
-        <h2>Acerte o Numero</h2>
-        <h2>1 - 100</h2>
+    <div class="guess">
+      <h2>Acerte o Numero entre 1 - 100</h2>
       <h1 v-if="controlador == 1">Voce Ganhou</h1>
       <h1 v-else-if="controlador == 2">Voce Perdeu</h1>
-        <btnNovoJogo v-if="controlador == 1 || controlador == 2" @newGameAcionado="newGame" />
-        <entradaTexto v-else @inputAcionado="comparativoJogadas"/>
+      
+      <btnNovoJogo v-if="controlador == 1 || controlador == 2" 
+      @newGameAcionado="newGame" />
+
+      <entradaTexto v-else 
+      @inputAcionado="comparativoJogadas"
+      :numeroRandom="numeroRandom"/>
     </div>
 </template>
 
@@ -20,7 +23,7 @@ export default {
   },
 	data(){
 		return{
-      computerNumber: null,
+      numeroRandom: null,
       controlador: 0,
     }
   },
@@ -29,14 +32,15 @@ export default {
     window.location.reload()
 		},
     comparativoJogadas(tentativas, numerosJogados, numeroJogado, ultimaJogada) {
-      if(ultimaJogada == this.computerNumber){
+      if(ultimaJogada == this.numeroRandom){
         this.controlador = 1;
-      } else if (tentativas >= 3)
+      } else if (tentativas >= 10)
         this.controlador = 2;
     }
   },
 	created(){
-		this.computerNumber = Math.floor(Math.random() * 100 + 1)
+		this.numeroRandom = Math.floor(Math.random() * 100 + 1)
+    console.log(this.numeroRandom)
     }
 	}
 </script>
