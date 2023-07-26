@@ -3,11 +3,10 @@
 			<h1>{{ computerNumber }}</h1>
         <h2>Acerte o Numero</h2>
         <h2>1 - 100</h2>
-        <entradaTexto @inputAcionado="verificadorResposta"/>
-        <div>
-          <h1 v-if="controlador == 1">Voce Ganhou</h1>
-        </div>
-        <btnNovoJogo @newGameAcionado="newGame" />
+      <h1 v-if="controlador == 1">Voce Ganhou</h1>
+      <h1 v-else-if="controlador == 2">Voce Perdeu</h1>
+        <btnNovoJogo v-if="controlador == 1 || controlador == 2" @newGameAcionado="newGame" />
+        <entradaTexto v-else @inputAcionado="comparativoJogadas"/>
     </div>
 </template>
 
@@ -21,7 +20,7 @@ export default {
   },
 	data(){
 		return{
-      computerNumber: 10,
+      computerNumber: null,
       controlador: 0,
     }
   },
@@ -29,21 +28,12 @@ export default {
 		newGame(){
     window.location.reload()
 		},
-    handleChange(event) {
-      console.log(event.target.value); 
-    },
-    comparativoResultado(tentativas){
-      if(tentativas >= 2){
-        this.controlador = 1
+    comparativoJogadas(tentativas, numerosJogados, numeroJogado, ultimaJogada) {
+      if(ultimaJogada == this.computerNumber){
+        this.controlador = 1;
+      } else if (tentativas >= 3)
+        this.controlador = 2;
     }
-  },
-  verificadorResposta(numerosJogados){
-    console.log(numerosJogados + 'henriu')
-
-    if(numerosJogados == this.computerNumber){
-      this.controlador = 1
-    }
-  }
   },
 	created(){
 		this.computerNumber = Math.floor(Math.random() * 100 + 1)
