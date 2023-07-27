@@ -1,4 +1,7 @@
-# guess
+# Projeto do dia 7 - GuessTheNumber
+Projeto criado com base nas aulas de JS do Professor AndreLocono, é uma adaptação de outro projeto do mesmo nome usando VueCLI
+
+Link do Projeto no GitHub Pages:
 
 ## Project setup
 ```
