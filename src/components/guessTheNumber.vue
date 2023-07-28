@@ -1,17 +1,19 @@
 <template>
-    <div class="guess">
-      <h2>Acerte o Numero entre 1 - 100</h2>
+  <div class="guess">
+      <h1>Acerte o Numero entre 1 - 100</h1>
       <h6>Você tem 10 chances para acertar</h6>
+    <div>
       <h1 v-if="controlador == 1">Voce Ganhou</h1>
       <h1 v-else-if="controlador == 2">Voce Perdeu</h1>
 
-      <btnNovoJogo v-if="controlador == 1 || controlador == 2" 
-      @newGameAcionado="newGame" />
-
-      <entradaTexto v-else 
-      @inputAcionado="comparativoJogadas"
-      :numeroRandom="numeroRandom"/>
+        <entradaTexto
+          @inputAcionado="comparativoJogadas"
+          :numeroRandom="numeroRandom" />
     </div>
+    <div>
+      <btnNovoJogo @newGameAcionado="newGame" />
+    </div>
+  </div>
 </template>
 
 <script>
@@ -35,8 +37,10 @@ export default {
     comparativoJogadas(tentativas, numerosJogados, numeroJogado, ultimaJogada) {
       if(ultimaJogada == this.numeroRandom){
         this.controlador = 1;
+        console.log(this.controlador, "zimermann")
       } else if (tentativas >= 10)
         this.controlador = 2;
+        console.log(this.controlador, "henrique")
     }
   },
 	created(){
@@ -46,15 +50,36 @@ export default {
 	}
 </script>
 
-<style>
-  .guess{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    flex-direction: column;
-  }
-  .h2{
-    text-align: center;
-  }
+<style scoped>
+  .guess {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.guess h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.guess h6 {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.guess h1 {
+  font-size: 36px;
+  margin-top: 30px;
+  color: rgb(0, 0, 0);
+  
+}
+
 </style>
