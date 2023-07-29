@@ -5,14 +5,11 @@
     <div>
       <h1 v-if="controlador == 1">Voce Ganhou</h1>
       <h1 v-else-if="controlador == 2">Voce Perdeu</h1>
-
-        <entradaTexto
+    </div>
+      <btnNovoJogo @newGameAcionado="newGame" v-if="controlador == 1 || controlador == 2" />
+        <entradaTexto v-else
           @inputAcionado="comparativoJogadas"
           :numeroRandom="numeroRandom" />
-    </div>
-    <div>
-      <btnNovoJogo @newGameAcionado="newGame" />
-    </div>
   </div>
 </template>
 
@@ -37,11 +34,10 @@ export default {
     comparativoJogadas(tentativas, numerosJogados, numeroJogado, ultimaJogada) {
       if(ultimaJogada == this.numeroRandom){
         this.controlador = 1;
-        console.log(this.controlador, "zimermann")
       } else if (tentativas >= 10)
         this.controlador = 2;
-        console.log(this.controlador, "henrique")
     }
+
   },
 	created(){
 		this.numeroRandom = Math.floor(Math.random() * 100 + 1)
