@@ -1,10 +1,13 @@
 <template>
   <div class="guess">
-      <h1>Acerte o Numero entre 1 - 100</h1>
-      <h6>Você tem 10 chances para acertar</h6>
+      <h1>Acerte o Número entre 1 a 100</h1>
+      <h6 v-if="controlador < 1">Você tem {{ compJogadas }} chances para acertar</h6>
     <div>
-      <h1 v-if="controlador == 1">Voce Ganhou</h1>
-      <h1 v-else-if="controlador == 2">Voce Perdeu</h1>
+      <h1 v-if="controlador == 1">Voce Ganhou, Parabéns!!!
+        <hr><p>O número era {{ numeroRandom }}</p></h1>
+
+      <h1 v-else-if="controlador == 2">Voce Perdeu, Perdedor
+        <hr><p>O número era {{ numeroRandom }}</p></h1>
     </div>
       <btnNovoJogo @newGameAcionado="newGame" v-if="controlador == 1 || controlador == 2" />
         <entradaTexto v-else
@@ -25,6 +28,7 @@ export default {
 		return{
       numeroRandom: null,
       controlador: 0,
+      compJogadas: 10,
     }
   },
 	methods:{
@@ -32,6 +36,7 @@ export default {
     window.location.reload()
 		},
     comparativoJogadas(tentativas, numerosJogados, numeroJogado, ultimaJogada) {
+      this.compJogadas--
       if(ultimaJogada == this.numeroRandom){
         this.controlador = 1;
       } else if (tentativas >= 10)
@@ -41,7 +46,7 @@ export default {
   },
 	created(){
 		this.numeroRandom = Math.floor(Math.random() * 100 + 1)
-    console.log(this.numeroRandom)
+    // console.log(this.numeroRandom)
     }
 	}
 </script>
@@ -75,7 +80,6 @@ export default {
   font-size: 36px;
   margin-top: 30px;
   color: rgb(0, 0, 0);
-  
 }
 
 </style>
